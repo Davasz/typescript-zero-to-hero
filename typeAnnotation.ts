@@ -2,19 +2,19 @@ let nome : string = 'Davi';
 
 let fruits : string[] = ['apple', 'orange', 'banana'];
 
-let car : {
+let carr : {
     name : string,
     model : string,
     year : number
 };
 
-car = {
+carr = {
     name : 'Ford',
     model : 'Mustang',
     year : 1969
 };
 
-console.log(car);
+console.log(carr);
 
 function multNumber(num1: number, num2: number): number {
     return num1 * num2;
