@@ -1,13 +1,9 @@
 class car {
 
-    constructor(make: string, color: string, doors = 4) {
+    constructor(make: string, color: string, doors: number) {
         this._make = make;
         this._color = color;
-        if ((doors % 2) === 0) {
-            this._doors = doors;
-        } else {
-            throw new Error('Doors must be an even number');
-        }
+        this._doors = doors;
     }
 
     _make: string;
@@ -38,44 +34,22 @@ class car {
     }
 }
 
-let myCar2 = new car('Galaxy Motors', 'red', 3);
+class Pessoa {
+    nome: string;
+    idade: number;
 
-let myCar3 = new car('Galaxy Motors', 'gray');
-console.log(myCar3.doors);  // returns 4, the default value
-
-console.log(myCar2.accelerate(35));
-console.log(myCar2.brake());
-console.log(myCar2.turn('right'));
-
-// Properties
-private _make: string;
-private _color: string;
-private _doors: number;
-// ...
-private worker(): string {
-    return this._make;
-}
-
-class Car {
-    // Properties
-    private static numberOfCars: number = 0;  // New static property
-    private _make: string;
-    private _color: string;
-    private _doors: number;
-
-    // Constructor
-    constructor(make: string, color: string, doors = 4) {
-        this._make = make;
-        this._color = color;
-        this._doors = doors;
-        Car.numberOfCars++; // Increments the value of the static property
+    // Construtor da classe
+    constructor(nome: string, idade: number) {
+        this.nome = nome;
+        this.idade = idade;
     }
-    // ...
+
+    // Método da classe
+    saudacao(): string {
+        return `Olá, meu nome é ${this.nome} e eu tenho ${this.idade} anos.`;
+    }
 }
 
-// Instantiate the Car object with all parameters
-let myCar1 = new Car('Cool Car Company', 'blue', 2);
-// Instantiates the Car object with all parameters
-let myCar2 = new Car('Galaxy Motors', 'blue', 2);
-// Returns 2
-console.log(Car.getNumberOfCars());
+// Criando uma instância da classe Pessoa
+const pessoa1 = new Pessoa("Davi", 18);
+console.log(pessoa1.saudacao());
