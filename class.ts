@@ -34,22 +34,26 @@ class car {
     }
 }
 
-class Pessoa {
+// Classe base
+class Animal {
     nome: string;
-    idade: number;
 
-    // Construtor da classe
-    constructor(nome: string, idade: number) {
+    constructor(nome: string) {
         this.nome = nome;
-        this.idade = idade;
     }
 
-    // Método da classe
-    saudacao(): string {
-        return `Olá, meu nome é ${this.nome} e eu tenho ${this.idade} anos.`;
+    mover(distanciaEmMetros: number): void {
+        console.log(`${this.nome} moveu-se ${distanciaEmMetros} metros.`);
     }
 }
 
-// Criando uma instância da classe Pessoa
-const pessoa1 = new Pessoa("Davi", 18);
-console.log(pessoa1.saudacao());
+// Classe derivada
+class Cachorro extends Animal {
+    latir(): void {
+        console.log(`${this.nome} está latindo.`);
+    }
+}
+
+const meuCachorro = new Cachorro("Rex");
+meuCachorro.latir();
+meuCachorro.mover(10); 
