@@ -1,14 +1,17 @@
-class car {
+class Car {
+
+    private static nubersOfCars: number = 0;
 
     constructor(make: string, color: string, doors: number) {
         this._make = make;
         this._color = color;
-        this._doors = doors;
+        this._doors = doors % 2 === 0 ? doors : 2;
+        Car.nubersOfCars++; 
     }
 
-    _make: string;
-    _color: string;
-    _doors: number;
+    private _make: string;
+    private _color: string;
+    private _doors: number;
 
     get make() {
         return this._make;
@@ -32,28 +35,47 @@ class car {
             throw new Error('Doors must be an even number');
         }
     }
-}
 
-// Classe base
-class Animal {
-    nome: string;
-
-    constructor(nome: string) {
-        this.nome = nome;
+    protected worker() {
+        return `The ${this._make}`;
     }
 
-    mover(distanciaEmMetros: number): void {
-        console.log(`${this.nome} moveu-se ${distanciaEmMetros} metros.`);
+    public static getNumberOfCars(): number {
+        return Car.nubersOfCars;
     }
 }
 
-// Classe derivada
-class Cachorro extends Animal {
-    latir(): void {
-        console.log(`${this.nome} está latindo.`);
+const myCar = new Car('BMW', 'blue', 6);
+const myCar2 = new Car('Ferrari', 'red', 4);
+
+console.log(Car.getNumberOfCars());
+
+// -----------------------------
+
+
+class EletricCar extends Car {
+
+    constructor(make: string, color: string, range: number, doors = 2) {
+        super(make, color, doors);
+        this._range = range;
+    }
+
+    private _range: number;
+    
+    get range() {
+        return this._range;
+    }
+    set range(range) {
+        this._range = range;
+    }
+
+    public charge() {
+        console.log(this.worker() + " is charging.")
     }
 }
 
-const meuCachorro = new Cachorro("Rex");
-meuCachorro.latir();
-meuCachorro.mover(10); 
+let eCar: EletricCar = new EletricCar('BYD', 'black', 123, 2);
+let eCar2: EletricCar = new EletricCar('BYD', 'blue', 244);
+
+console.log(Car.getNumberOfCars())
+console.log(eCar.charge())
