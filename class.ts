@@ -79,3 +79,60 @@ let eCar2: EletricCar = new EletricCar('BYD', 'blue', 244);
 
 console.log(Car.getNumberOfCars())
 console.log(eCar.charge())
+
+class SportsCar extends Car {
+    private _topSpeed: number;
+
+    constructor(make: string, color: string, topSpeed: number, doors = 2) {
+        super(make, color, doors);
+        this._topSpeed = topSpeed;
+    }
+
+    get topSpeed() {
+        return this._topSpeed;
+    }
+
+    set topSpeed(speed: number) {
+        this._topSpeed = speed;
+    }
+
+    public boost() {
+        console.log(`${this.worker()} is boosting to ${this._topSpeed} km/h!`);
+    }
+}
+
+class Truck extends Car {
+    private _capacity: number;
+
+    constructor(make: string, color: string, capacity: number, doors = 4) {
+        super(make, color, doors);
+        this._capacity = capacity;
+    }
+
+    get capacity() {
+        return this._capacity;
+    }
+
+    set capacity(capacity: number) {
+        this._capacity = capacity;
+    }
+
+    public loadCargo(cargoWeight: number) {
+        if (cargoWeight > this._capacity) {
+            console.log(`Cannot load cargo. Maximum capacity is ${this._capacity} kg.`);
+        } else {
+            console.log(`Loading ${cargoWeight} kg of cargo into the ${this.worker()}.`);
+        }
+    }
+}
+
+// Testando as novas classes
+
+const sportsCar = new SportsCar('Porsche', 'yellow', 320);
+const truck = new Truck('Ford', 'white', 5000);
+
+console.log(Car.getNumberOfCars());
+
+sportsCar.boost();
+truck.loadCargo(4000);
+truck.loadCargo(6000);
