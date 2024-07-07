@@ -49,3 +49,53 @@ console.log(meuCirculo.descricao()); // Output: Área: 78.53981633974483 Períme
 
 const meuRetangulo = new Retangulo(4, 6);
 console.log(meuRetangulo.descricao()); // Output: Área: 24 Perímetro: 20
+
+abstract class Pagamento {
+    protected valor: number;
+
+    constructor(valor: number) {
+        this.valor = valor;
+    }
+
+    abstract realizarPagamento(): void;
+
+    emitirRecibo(): void {
+        console.log(`Pagamento de R$${this.valor.toFixed(2)} realizado.`);
+    }
+}
+
+class CartaoCredito extends Pagamento {
+    private numeroCartao: string;
+
+    constructor(valor: number, numeroCartao: string) {
+        super(valor);
+        this.numeroCartao = numeroCartao;
+    }
+
+    realizarPagamento(): void {
+        console.log(`Pagamento de R$${this.valor.toFixed(2)} realizado com cartão de crédito ${this.numeroCartao}.`);
+    }
+}
+
+class PayPal extends Pagamento {
+    private email: string;
+
+    constructor(valor: number, email: string) {
+        super(valor);
+        this.email = email;
+    }
+
+    realizarPagamento(): void {
+        console.log(`Pagamento de R$${this.valor.toFixed(2)} realizado com PayPal ${this.email}.`);
+    }
+}
+
+// Uso das classes
+const pagamento1 = new CartaoCredito(100, "1234-5678-9012-3456");
+pagamento1.realizarPagamento();
+pagamento1.emitirRecibo();
+
+const pagamento2 = new PayPal(200, "exemplo@paypal.com");
+pagamento2.realizarPagamento();
+pagamento2.emitirRecibo();
+
